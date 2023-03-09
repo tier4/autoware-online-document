@@ -59,6 +59,6 @@ docker buildx bake --load --progress=plain -f "$SCRIPT_DIR/autoware-universe/doc
     --set "*.args.ROS_DISTRO=$rosdistro" \
     --set "*.args.BASE_IMAGE=$base_image" \
     --set "*.args.SETUP_ARGS=$setup_args" \
-    --set "devel.tags=ghcr.io/autowarefoundation/autoware-universe:$rosdistro-latest$image_name_suffix" \
-    --set "prebuilt.tags=ghcr.io/autowarefoundation/autoware-universe:$rosdistro-latest-prebuilt$image_name_suffix"
+    --set "devel.tags=ghcr.io/tier4/online:$rosdistro-awsim-stable$image_name_suffix" \
+    --set "prebuilt.tags=ghcr.io/tier4/online:$rosdistro-awsim-stable-prebuilt$image_name_suffix"
 set +x
