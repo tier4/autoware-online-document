@@ -88,6 +88,9 @@
          map_path:=$HOME/autoware_map/nishishinjuku_autoware_map
          ```
 
+         If you feel it consumes memory too much, you can turn off Displays > Map >  PointCloudMap on Rviz panel.
+         ![map_pointcloud_off](https://user-images.githubusercontent.com/42209144/224251072-e568405d-de19-4b5e-a86f-709ce12fed3b.png)
+
          #### Terminal 2
 
          Launch a Docker container
