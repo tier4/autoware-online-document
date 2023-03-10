@@ -1,8 +1,8 @@
-# Docker installation for quick start
+# Docker installation and Autoware simulation
 
 ## How to set up a development environment
 
-1. Installing dependencies manually
+1. Install dependencies manually
 
    - [Install Docker Engine](https://github.com/autowarefoundation/autoware/tree/awsim-stable/ansible/roles/docker_engine#manual-installation)
 
@@ -11,18 +11,7 @@
    - [Install rocker](https://github.com/autowarefoundation/autoware/tree/awsim-stable/ansible/roles/rocker#manual-installation)
 
 
-## How to build a docker image
-  
-
-1. 
-   ```
-   git clone git@github.com:tier4/autoware-online-document.git
-   
-   ```
-
-
-
-## How to set up a workspace
+## How to run a simulator
 
 1. Create the `autoware_map` directory for map data later.
 
@@ -30,18 +19,109 @@
    mkdir ~/autoware_map
    ```
 
-2. Launch a Docker container.
+2. Launch a Docker container using pre-built image
 
    ```bash
-   rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/autowarefoundation/autoware-universe:humble-latest-prebuilt
+   rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt
    ```
-
-   For more advanced usage, see [here](https://github.com/autowarefoundation/autoware/tree/main/docker/README.md).
 
 3. Run Autoware simulator
 
    Inside the container, you can run the Autoware simulation by following this tutorial:
 
-   [planning simulation]()
+   1. [planning simulation](https://autowarefoundation.github.io/autoware-documentation/main/tutorials/ad-hoc-simulation/planning-simulation/)
 
-   [rosbag replay simulation]().
+   2. [rosbag replay simulation](https://autowarefoundation.github.io/autoware-documentation/main/tutorials/ad-hoc-simulation/rosbag-replay-simulation/).
+
+   3. AWSIM simulation
+
+      ### A. Preparation
+      
+         Before trying AWSIM simulation, you have to once exit the Docker container by `exit` command.
+
+         Required PC specs
+         - CPU: 6cores and 12thread or higher
+         - GPU: RTX2080Ti or higher
+
+         
+         Localhost Settings
+         ```bash
+         if [ ! -e /tmp/cycloneDDS_configured ]; then
+            sudo sysctl -w net.core.rmem_max=2147483647
+            sudo ip link set lo multicast on
+            touch /tmp/cycloneDDS_configured
+         fi
+         ```
+         
+         Download AWSIM binary
+         ```
+         sudo apt install libarchive-tools -y
+         cd $HOME
+         wget -qO- https://github.com/tier4/AWSIM/releases/download/v1.1.0/AWSIM_v1.1.0.zip | bsdtar -xvf-
+         chmod +x ./AWSIM_v1.1.0/AWSIM_demo.x86_64
+         ```
+         
+         Download a map
+         ```
+         wget -qO- https://github.com/tier4/AWSIM/releases/download/v1.1.0/nishishinjuku_autoware_map.zip | bsdtar -xvf-
+         mv nishishinjuku_autoware_map ~/autoware_map
+         ```
+
+      ### B. Run simulation
+
+         #### Terminal 1
+
+         Launch a Docker container
+         ```bash
+         rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt
+         ```
+
+         Launch Autoware 
+         ```
+         export ROS_LOCALHOST_ONLY=1
+         export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+         export RCUTILS_COLORIZED_OUTPUT=1
+
+         ros2 launch autoware_launch e2e_simulator.launch.xml \
+         vehicle_model:=sample_vehicle \
+         sensor_model:=awsim_sensor_kit \
+         map_path:=$HOME/autoware_map/nishishinjuku_autoware_map
+         ```
+
+         #### Terminal 2
+
+         Launch a Docker container
+         ```bash
+         rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume $HOME/AWSIM_v1.1.0 --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt
+         ```
+
+         Launch AWSIM
+         ```
+         export ROS_LOCALHOST_ONLY=1
+         export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+         export RCUTILS_COLORIZED_OUTPUT=1
+
+         cd $HOME
+         ./AWSIM_v1.1.0/AWSIM_demo.x86_64
+         ```
+
+      ### C. Enjoy self-Driving simulation
+
+         Please refer to "5. Let's run the self-Driving simulation" in [AWSIM Quick Start Demo](https://tier4.github.io/AWSIM/GettingStarted/QuickStartDemo/).
+
+## How to build a docker image locally
+
+1. Build a Docker image
+   
+   ```
+   git clone git@github.com:tier4/autoware-online-document.git
+   cd autoware-online-document
+   chmod +x -R docker
+   ./docker/build.sh
+   ```
+
+2. Use the Docker image
+   
+   You can use your Docker image built locally by replacing \
+   `ghcr.io/tier4/online:humble-awsim-stable-prebuilt` (pre-built) 
+   with `ghcr.io/tier4/online:humble-awsim-stable` (locally built).
