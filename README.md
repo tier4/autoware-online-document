@@ -22,7 +22,7 @@
 2. Launch a Docker container using pre-built image
 
    ```bash
-   rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt
+   rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
    ```
 
 3. Run Autoware simulator
@@ -54,7 +54,7 @@
          ```
          
          Download AWSIM binary
-         ```
+         ```bash
          sudo apt install libarchive-tools -y
          cd $HOME
          wget -qO- https://github.com/tier4/AWSIM/releases/download/v1.1.0/AWSIM_v1.1.0.zip | bsdtar -xvf-
@@ -62,7 +62,7 @@
          ```
          
          Download a map
-         ```
+         ```bash
          wget -qO- https://github.com/tier4/AWSIM/releases/download/v1.1.0/nishishinjuku_autoware_map.zip | bsdtar -xvf-
          mv nishishinjuku_autoware_map ~/autoware_map
          ```
@@ -73,11 +73,11 @@
 
          Launch a Docker container
          ```bash
-         rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt
+         rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
          ```
 
-         Launch Autoware 
-         ```
+         Launch Autoware
+         ```bash
          export ROS_LOCALHOST_ONLY=1
          export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
          export RCUTILS_COLORIZED_OUTPUT=1
@@ -92,11 +92,11 @@
 
          Launch a Docker container
          ```bash
-         rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume $HOME/AWSIM_v1.1.0 --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt
+         rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume $HOME/AWSIM_v1.1.0 --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
          ```
 
          Launch AWSIM
-         ```
+         ```bash
          export ROS_LOCALHOST_ONLY=1
          export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
          export RCUTILS_COLORIZED_OUTPUT=1
@@ -113,9 +113,10 @@
 
 1. Build a Docker image
    
-   ```
-   git clone git@github.com:tier4/autoware-online-document.git
-   cd autoware-online-document
+   ```bash
+   cd $HOME
+   git clone git@github.com:tier4/autoware-online-document.git autoware
+   cd autoware
    chmod +x -R docker
    ./docker/build.sh
    ```
@@ -125,3 +126,4 @@
    You can use your Docker image built locally by replacing \
    `ghcr.io/tier4/online:humble-awsim-stable-prebuilt` (pre-built) 
    with `ghcr.io/tier4/online:humble-awsim-stable` (locally built).
+   Keep in mind that you should source setup.sh by `source ~/autoware/install/setup.bash`
