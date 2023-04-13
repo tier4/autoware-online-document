@@ -81,7 +81,8 @@
          export ROS_LOCALHOST_ONLY=1
          export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
          export RCUTILS_COLORIZED_OUTPUT=1
-
+         
+         source </path/to/autoware>/install/setup.bash
          ros2 launch autoware_launch e2e_simulator.launch.xml \
          vehicle_model:=sample_vehicle \
          sensor_model:=awsim_sensor_kit \
@@ -105,6 +106,7 @@
          export RCUTILS_COLORIZED_OUTPUT=1
 
          cd $HOME
+         source </path/to/autoware>/install/setup.bash
          ./AWSIM_v1.1.0/AWSIM_demo.x86_64
          ```
 
