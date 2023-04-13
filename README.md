@@ -106,7 +106,7 @@
          export RCUTILS_COLORIZED_OUTPUT=1
 
          cd $HOME
-         source /path/to/autoware/install/setup.bash
+         source </path/to/autoware>/install/setup.bash
          ./AWSIM_v1.1.0/AWSIM_demo.x86_64
          ```
 
