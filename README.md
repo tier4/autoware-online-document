@@ -29,9 +29,9 @@
 
    Inside the container, you can run the Autoware simulation by following this tutorial:
 
-   1. [planning simulation](https://autowarefoundation.github.io/autoware-documentation/main/tutorials/ad-hoc-simulation/planning-simulation/)
+   1. [planning simulation](docs/planning_simulation.md)
 
-   2. [rosbag replay simulation](https://autowarefoundation.github.io/autoware-documentation/main/tutorials/ad-hoc-simulation/rosbag-replay-simulation/).
+   2. [rosbag replay simulation](docs/rosbag_replay_simulation.md).
 
    3. AWSIM simulation
 
@@ -82,7 +82,7 @@
          export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
          export RCUTILS_COLORIZED_OUTPUT=1
          
-         source </path/to/autoware>/install/setup.bash
+         source /autoware/install/setup.bash
          ros2 launch autoware_launch e2e_simulator.launch.xml \
          vehicle_model:=sample_vehicle \
          sensor_model:=awsim_sensor_kit \
@@ -106,7 +106,7 @@
          export RCUTILS_COLORIZED_OUTPUT=1
 
          cd $HOME
-         source </path/to/autoware>/install/setup.bash
+         source /autoware/install/setup.bash
          ./AWSIM_v1.1.0/AWSIM_demo.x86_64
          ```
 
