@@ -7,8 +7,8 @@ Download and unpack a sample map.
 - You can also download [the map](https://drive.google.com/file/d/1499_nsbUbIeturZaDj7jhUownh5fvXHd/view?usp=sharing) manually.
 
 ```bash
-sudo gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1499_nsbUbIeturZaDj7jhUownh5fvXHd'
-sudo unzip -d ~/autoware_map ~/autoware_map/sample-map-planning.zip
+gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1499_nsbUbIeturZaDj7jhUownh5fvXHd'
+unzip -d ~/autoware_map ~/autoware_map/sample-map-planning.zip
 ```
 
 Launch a Docker container using pre-built image.
