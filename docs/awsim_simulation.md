@@ -29,7 +29,7 @@
 
    Launch a Docker container
    ```bash
-   rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
+   rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume $HOME/AWSIM_v1.1.0 --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
    ```
 
    Launch Autoware
@@ -86,18 +86,27 @@
    
    4. Optionally, you can define an intermediate point through which the vehicle will travel on its way to the destination.
    ![](images/awsim/Image_checkpoint_0.png)
-   The generated path can be seen on the image below.
+      The generated path can be seen on the image below.
    ![](images/awsim/Image_path.png)
    
    5. Enable self-driving.
    
-   To make the vehicle start navigating please engage it's operation using the command below.
+      Launch a Docker container on the another terminal.
+      ```bash
+      rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume $HOME/AWSIM_v1.1.0 --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
+      ```
    
-   ```
-   source /autoware/install/setup.bash
-   ros2 topic pub /autoware/engage autoware_auto_vehicle_msgs/msg/Engage '{engage: True}' -1
-   ```
    
-   ![](images/ausim/Image_running.png)
-   
-   Finally, the self-driving simulation should start!
+      Now you can start the ego vehicle driving by clicking the `AUTO` button on `OperationMode` in `AutowareStatePanel`.
+      Alteratively, you can manually start the vehicle by running the following command:
+      ```
+      export ROS_LOCALHOST_ONLY=1
+      export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      export RCUTILS_COLORIZED_OUTPUT=1
+      source /autoware/install/setup.bash
+      ros2 topic pub /autoware/engage autoware_auto_vehicle_msgs/msg/Engage '{engage: True}' -1
+      ```
+      
+      Finally, the self-driving simulation should start!
+
+      ![](images/awsim/Image_running.png)
