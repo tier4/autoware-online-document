@@ -7,11 +7,12 @@ Download and unpack a sample map.
 - You can also download [the map](https://drive.google.com/file/d/1499_nsbUbIeturZaDj7jhUownh5fvXHd/view?usp=sharing) manually.
 
 ```bash
-gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1499_nsbUbIeturZaDj7jhUownh5fvXHd'
-unzip -d ~/autoware_map ~/autoware_map/sample-map-planning.zip
+sudo gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1499_nsbUbIeturZaDj7jhUownh5fvXHd'
+sudo unzip -d ~/autoware_map ~/autoware_map/sample-map-planning.zip
 ```
 
 Launch a Docker container using pre-built image.
+Note that when you first launch docker container, it will take 3 hours.
 
 ```bash
 rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
@@ -60,6 +61,7 @@ Now you can start the ego vehicle driving by clicking the `AUTO` button on `Oper
 Alteratively, you can manually start the vehicle by running the following command:
 
 ```bash
+rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
 source /autoware/install/setup.bash
 ros2 service call /api/operation_mode/change_to_autonomous autoware_adapi_v1_msgs/srv/ChangeOperationMode {}
 ```
