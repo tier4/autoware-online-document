@@ -17,6 +17,7 @@
 
    ```bash
    mkdir ~/autoware_map
+   chmod -R 777 ~/autoware_map
    ```
    
 2. Set local host.
