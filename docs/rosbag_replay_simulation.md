@@ -20,6 +20,13 @@
    unzip -d ~/autoware_map/ ~/autoware_map/sample-rosbag.zip
    ```
 
+3. Launch a Docker container using pre-built image.
+
+   ```bash
+   rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
+   ```
+
+
 ### Note
 
 - Sample map and rosbag: Copyright 2020 TIER IV, Inc.
@@ -58,3 +65,5 @@
    ![third-person-follower](images/rosbag-replay/third-person-follower.png)
 
 [Reference video tutorials](https://drive.google.com/file/d/12D6aSC1Y3Kf7STtEPWG5RYynxKdVcPrc/view?usp=sharing)
+
+After the simulation is finished, `exit` from the Docker environment to a fresh state.

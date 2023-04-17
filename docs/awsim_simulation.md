@@ -9,16 +9,6 @@
    - CPU: 6cores and 12thread or higher
    - GPU: RTX2080Ti or higher
 
-   
-   Localhost Settings
-   ```bash
-   if [ ! -e /tmp/cycloneDDS_configured ]; then
-      sudo sysctl -w net.core.rmem_max=2147483647
-      sudo ip link set lo multicast on
-      touch /tmp/cycloneDDS_configured
-   fi
-   ```
-   
    Download AWSIM binary
    ```bash
    sudo apt install libarchive-tools -y
@@ -110,4 +100,4 @@
    
    ![](images/ausim/Image_running.png)
    
-   The self-driving simulation demo has been successfully launched!
+   Finally, the self-driving simulation should start!

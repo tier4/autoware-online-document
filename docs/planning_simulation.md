@@ -11,6 +11,13 @@ gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1499_nsb
 unzip -d ~/autoware_map ~/autoware_map/sample-map-planning.zip
 ```
 
+Launch a Docker container using pre-built image.
+
+```bash
+rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
+```
+
+
 ## Basic simulations
 
 ### Lane driving scenario
@@ -61,3 +68,5 @@ After that, you can see `AUTONOMOUS` sign on `OperationMode` and `AUTO` button i
 
 ![start-driving](images/planning/start-driving.png)
 
+
+After the simulation is finished, `exit` from the Docker environment to a fresh state.

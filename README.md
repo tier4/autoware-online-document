@@ -18,11 +18,14 @@
    ```bash
    mkdir ~/autoware_map
    ```
-
-2. Launch a Docker container using pre-built image
-
+   
+2. Set local host.
    ```bash
-   rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
+   if [ ! -e /tmp/cycloneDDS_configured ]; then
+      sudo sysctl -w net.core.rmem_max=2147483647
+      sudo ip link set lo multicast on
+      touch /tmp/cycloneDDS_configured
+   fi
    ```
 
 3. Run Autoware simulator
