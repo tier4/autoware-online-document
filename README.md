@@ -38,7 +38,7 @@
 
    3. [AWSIM simulation](docs/awsim_simulation.md)
 
-## How to build a docker image locally
+## (Optional) How to build a docker image locally
 
 1. Build a Docker image
    

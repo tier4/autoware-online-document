@@ -28,6 +28,7 @@
    #### Terminal 1
 
    Launch a Docker container
+   Note that when you first launch docker container, it will take 3 hours.
    ```bash
    rocker --nvidia --x11 --user --privileged --network=host --volume $HOME/autoware_map --volume $HOME/AWSIM_v1.1.0 --volume /tmp -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
    ```

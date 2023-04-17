@@ -7,8 +7,8 @@
    - You can also download [the map](https://drive.google.com/file/d/1A-8BvYRX3DhSzkAnOcGWFw5T30xTlwZI/view?usp=sharing) manually.
 
    ```bash
-   gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1A-8BvYRX3DhSzkAnOcGWFw5T30xTlwZI'
-   unzip -d ~/autoware_map/ ~/autoware_map/sample-map-rosbag.zip
+   sudo gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1A-8BvYRX3DhSzkAnOcGWFw5T30xTlwZI'
+   sudo unzip -d ~/autoware_map/ ~/autoware_map/sample-map-rosbag.zip
    ```
 
 2. Download the sample rosbag files.
@@ -16,11 +16,12 @@
    - You can also download [the rosbag files](https://drive.google.com/file/d/1VnwJx9tI3kI_cTLzP61ktuAJ1ChgygpG/view?usp=sharing) manually.
 
    ```bash
-   gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1VnwJx9tI3kI_cTLzP61ktuAJ1ChgygpG'
-   unzip -d ~/autoware_map/ ~/autoware_map/sample-rosbag.zip
+   sudo gdown -O ~/autoware_map/ 'https://docs.google.com/uc?export=download&id=1VnwJx9tI3kI_cTLzP61ktuAJ1ChgygpG'
+   sudo unzip -d ~/autoware_map/ ~/autoware_map/sample-rosbag.zip
    ```
 
 3. Launch a Docker container using pre-built image.
+   Note that when you first launch docker container, it will take 3 hours.
 
    ```bash
    rocker --nvidia --x11 --user --volume $HOME/autoware_map -- ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda
