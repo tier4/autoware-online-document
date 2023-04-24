@@ -4,11 +4,11 @@
 
 1. Install dependencies manually
 
-   - [Install Docker Engine](https://github.com/autowarefoundation/autoware/tree/awsim-stable/ansible/roles/docker_engine#manual-installation)
+   - [Install Docker Engine](https://github.com/autowarefoundation/autoware/blob/984e35c292fccb821cb6b4e3cb1b081936ec1509/ansible/roles/docker_engine/README.md)
 
-   - [Install NVIDIA Container Toolkit](https://github.com/autowarefoundation/autoware/tree/awsim-stable/ansible/roles/nvidia_docker#manual-installation)
+   - [Install NVIDIA Container Toolkit](https://github.com/autowarefoundation/autoware/blob/984e35c292fccb821cb6b4e3cb1b081936ec1509/ansible/roles/nvidia_docker/README.md)
 
-   - [Install rocker](https://github.com/autowarefoundation/autoware/tree/awsim-stable/ansible/roles/rocker#manual-installation)
+   - [Install rocker](https://github.com/autowarefoundation/autoware/blob/984e35c292fccb821cb6b4e3cb1b081936ec1509/ansible/roles/rocker/README.md)
 
 
 ## How to run a simulator
