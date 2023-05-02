@@ -22,11 +22,12 @@
    
 2. Set local host.
    ```bash
-   if [ ! -e /tmp/cycloneDDS_configured ]; then
-      sudo sysctl -w net.core.rmem_max=2147483647
-      sudo ip link set lo multicast on
-      touch /tmp/cycloneDDS_configured
-   fi
+   echo 'if [ ! -e /tmp/cycloneDDS_configured ]; then
+       sudo sysctl -w net.core.rmem_max=2147483647
+       sudo ip link set lo multicast on
+       touch /tmp/cycloneDDS_configured
+   fi' >> ~/.bashrc
+
    ```
 
 3. Run Autoware simulator
