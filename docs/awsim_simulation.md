@@ -11,6 +11,7 @@
 
    Download AWSIM binary
    ```bash
+   sudo apt update
    sudo apt install libarchive-tools -y
    cd $HOME
    wget -qO- https://github.com/tier4/AWSIM/releases/download/v1.1.0/AWSIM_v1.1.0.zip | bsdtar -xvf-
