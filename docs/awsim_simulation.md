@@ -77,21 +77,23 @@
 ## C. Enjoy self-Driving simulation
 
    1. Launch AWSIM and Autoware according to the steps described earlier in this document.
+   
+   2. Move "Time Scale" bar squared by pink in the picture from `× 1.00` to `× 0.50` in order to reduce rendering delay.
    ![](images/awsim/Image_top.png)
    
-   2. The Autoware will automatically set its pose estimation as presented below.
+   3. The Autoware will automatically set its pose estimation as presented below.
    ![](images/awsim/Image_Initial.png)
    
-   3. Set the navigation goal for the vehicle.
+   4. Set the navigation goal for the vehicle.
    ![](images/ausim/Image_goal_0.png)
    ![](images/awsim/Image_goal_1.png)
    
-   4. Optionally, you can define an intermediate point through which the vehicle will travel on its way to the destination.
+   5. Optionally, you can define an intermediate point through which the vehicle will travel on its way to the destination.
    ![](images/awsim/Image_checkpoint_0.png)
       The generated path can be seen on the image below.
    ![](images/awsim/Image_path.png)
    
-   5. Enable self-driving.
+   6. Enable self-driving.
    
       Launch a Docker container on the another terminal.
       ```bash
