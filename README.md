@@ -11,8 +11,8 @@
    - [Install rocker](https://github.com/autowarefoundation/autoware/blob/984e35c292fccb821cb6b4e3cb1b081936ec1509/ansible/roles/rocker/README.md)
 
 
-## How to run a simulator
 
+## How to set up a local configuration
 1. Create the `autoware_map` directory for map data later.
 
    ```bash
@@ -29,9 +29,9 @@
 
    ```
 
-3. Run Autoware simulator
+## How to run a simulator
 
-   Inside the container, you can run the Autoware simulation by following this tutorial:
+   You can run the Autoware simulation by following this tutorial in a container:
 
    1. [planning simulation](docs/planning_simulation.md)
 
@@ -54,6 +54,6 @@
 2. Use the Docker image
    
    You can use your Docker image built locally by replacing \
-   `ghcr.io/tier4/online:humble-awsim-stable-prebuilt` (pre-built) 
-   with `ghcr.io/tier4/online:humble-awsim-stable` (locally built).
+   `ghcr.io/tier4/online:humble-awsim-stable-prebuilt-cuda` (pre-built) 
+   with `ghcr.io/tier4/online:humble-awsim-stable-cuda` (locally built).
    Keep in mind that you should source setup.sh by `source ~/autoware/install/setup.bash`
